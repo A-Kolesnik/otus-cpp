@@ -10,16 +10,14 @@ configure_file(${CMAKE_SOURCE_DIR}/version.h.in ${CMAKE_SOURCE_DIR}/version.h)
 
 include(cmake/FindLibrary.cmake)
 
-add_executable(${CLI_TARGET} main.cpp)
-add_library(${VERSION_LIB_TARGET} lib.cpp)
+add_executable(${CLI_TARGET} main.cpp 
+                            src/readers.cpp 
+                            src/pipeline.cpp 
+                            src/validator.cpp
+                            src/reporter.cpp
+                            )
 
-target_include_directories(${VERSION_LIB_TARGET}
-    PRIVATE "${CMAKE_BINARY_DIR}"
-)
-
-target_link_libraries(${CLI_TARGET} PRIVATE
-    ${VERSION_LIB_TARGET}
-)
+target_include_directories(${CLI_TARGET} PRIVATE include)
 
 # Установка параметров компиляции
 if (MSVC)
@@ -31,9 +29,6 @@ if (MSVC)
     )
 else ()
     target_compile_options(${CLI_TARGET} PRIVATE
-        -Wall -Wextra -pedantic -Werror
-    )
-    target_compile_options(${VERSION_LIB_TARGET} PRIVATE
         -Wall -Wextra -pedantic -Werror
     )
 endif()

@@ -1,10 +1,9 @@
 # Название проекта
-set(HW_PROJECT_NAME "helloworld")
+set(HW_PROJECT_NAME "ip_filter")
 
 # Названия таргетов
-set(CLI_TARGET "helloworld_cli")
-set(VERSION_LIB_TARGET "helloworld")
-set(TESTS_TARGET "general_tests")
+set(CLI_TARGET "filter")
+set(TESTS_TARGET "filter_tests")
 
 # Установка параметров версионирования
 set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
